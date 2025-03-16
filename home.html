@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Temporary Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f2ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 400px;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-refresh { background-color: #3498db; }
+        .btn-new { background-color: #2ecc71; }
+        .btn-delete { background-color: #e74c3c; }
+
+        .message-box {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Temporary Email</h2>
+        <input type="text" id="temp-email" readonly>
+
+        <div>
+            <button class="btn-refresh" onclick="fetchEmails()">Refresh</button>
+            <button class="btn-new" onclick="generateEmail()">New</button>
+            <button class="btn-delete" onclick="deleteEmail()">Delete</button>
+        </div>
+
+        <div class="message-box">
+            <strong>No Messages</strong><br>
+            <small>Waiting for Incoming Messages</small>
+        </div>
+    </div>
+
+    <script>
+        function generateRandomEmail() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let email = '';
+            for(let i=0; i<8; i++){
+                email += chars.charAt(Math.floor(Math.random()*chars.length));
+            }
+            return email + '@mailforspams.com';
+        }
+
+        function generateEmail(){
+            document.getElementById('temp-email').value = generateRandomEmail();
+        }
+        function fetchEmails() {
+            alert('Chức năng kiểm tra mail chỉ demo, chưa hoạt động thực sự!');
+        }
+
+        function deleteEmail(){
+            document.getElementById('temp-email').value = '';
+        }
+
+        window.onload = function(){
+            generateEmail();
+        }
+    </script>
+</body>
+</html>

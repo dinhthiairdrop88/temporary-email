@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporary Email</title>
+    <script>
+        function generateRandomEmail() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+            let email = '';
+            for (let i = 0; i < 8; i++) {
+                email += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return email + '@mailforspams.com';
+        }
+
+        function generateEmail() {
+            document.getElementById('temp-email').value = generateEmail();
+        }
+
+        function refreshEmail() {
+            document.getElementById('email').value = generateEmail();
+        }
+
+        function copyEmail() {
+            const copyText = document.getElementById("email");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Email đã được sao chép: " + copyText.value);
+        }
+
+        window.onload = function () {
+            document.getElementById("email").value = generateEmail();
+        };
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Temporary Email</h2>
+        <input type="text" id="email" value="" readonly>
+        <br>
+        <button onclick="copyEmail()">Copy Email</button>
+        <button onclick="location.reload()">New</button>
+    </div>
+
+    <script>
+        document.getElementById('email').value = generateEmail();
+    </script>
+</body>
+</html>
